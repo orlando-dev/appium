@@ -22,7 +22,7 @@ T:\Arquivos e Programas x86\Android\User\AppData\Local\Android\Sdk>cd tools
 
 T:\Arquivos e Programas x86\Android\User\AppData\Local\Android\Sdk\tools>
 	
-Obs: caso seja necessário entre na pasta tools para abrir o emulador.
+Obs: caso seja necessario entre na pasta tools para abrir o emulador.
 ###############################################
 * Abrir o emulador android  
 Obs: Entre na pasta tools
@@ -42,7 +42,15 @@ List of devices attached
 emulator-5554   device
 emulator-5556   device
 #################################################
+* Abrir o inspetor UIAUTOMATORVIEWER para pegar os locators
 
+- comando: uiautomatorviewer
+
+Exemplo:
+C:\Users\Orlando>uiautomatorviewer
+
+Com esse comando simples, irá abrir o inspetor para localizar os Locators
+#################################################
 ### Proprietário ###
 
 * Orlando de Oliveira
