@@ -1,29 +1,49 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+- Necessário ter o java instalado na máquina. 
+- Algum emulador android
+- Appium instalado para inicializar o server local e inspecionar o app mobile.
 
-### What is this repository for? ###
+### Lista de comandos usados em cmd: ###
+* Mostrar androids que foram criados:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- Comando: emulator -list-avds
 
-### How do I get set up? ###
+- Exemplo: C:\Users\Orlando>emulator -list-avds
+Nexus_5_API_30
+Pixel_2_API_24
+##############################################
+* Direciona você para a pasta do android home para executa alguns comandos, como abrir o emulador.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+- Comando: cd %ANDROID_HOME% 
 
-### Contribution guidelines ###
+- Exemplo:	
+T:\Arquivos e Programas x86\Android\User\AppData\Local\Android\Sdk>cd tools
 
-* Writing tests
-* Code review
-* Other guidelines
+T:\Arquivos e Programas x86\Android\User\AppData\Local\Android\Sdk\tools>
+	
+Obs: caso seja necessário entre na pasta tools para abrir o emulador.
+###############################################
+* Abrir o emulador android  
+Obs: Entre na pasta tools
 
-### Who do I talk to? ###
+- Comando: emulator @Pixel_2_API_24
 
-* Repo owner or admin
-* Other community or team contact
+Com isso irá abrir o emulador.
+################################################
+* Listar dispositivos conectados/ligados.
+
+- Comando: adb devices 
+
+Exemplo:
+C:\Users\Orlando>adb devices
+* daemon started successfully
+List of devices attached
+emulator-5554   device
+emulator-5556   device
+#################################################
+
+### Proprietário ###
+
+* Orlando de Oliveira
+* https://www.linkedin.com/in/orlando-junior-869882164/
