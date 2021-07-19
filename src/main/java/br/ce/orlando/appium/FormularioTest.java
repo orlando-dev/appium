@@ -101,8 +101,51 @@ public class FormularioTest {
 	    switc.click();
 	    
 	    //verificar estados alterados
-	    Assert.assertFalse(check.getAttribute("checked").equals("false"));
-	    Assert.assertFalse(switc.getAttribute("checked").equals("true"));
+	    Assert.assertTrue(check.getAttribute("checked").equals("false"));
+	    Assert.assertTrue(switc.getAttribute("checked").equals("true"));
+	    
+	    driver.quit();
+	}
+	
+	@Test
+	public void deveRealizarDesafio() throws MalformedURLException {
+		
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability("platformName", "Android");
+		desiredCapabilities.setCapability("deviceName", "emulator-5554");
+		desiredCapabilities.setCapability("automationName", "uiautomator2");
+		desiredCapabilities.setCapability(MobileCapabilityType.APP, "I:/Repositório/TestesSoftware/appium/src/main/resources/CTAppium_1_2.apk");
+				
+		AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	    
+	    //Selecionar formulario
+		driver.findElement(By.xpath("//*[@text='Formulário']")).click();
+		
+		//Preencher campos 
+		driver.findElement(MobileBy.AccessibilityId("nome")).sendKeys("Orlando");
+	    driver.findElement(By.className("android.widget.CheckBox")).click();
+	    driver.findElement(MobileBy.AccessibilityId("switch")).click();
+	    driver.findElement(MobileBy.AccessibilityId("console")).click();
+	    driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='XBox One']")).click();
+	   
+	    
+	   //Salvar
+	    driver.findElement(By.xpath("//android.widget.TextView[@text='SALVAR']")).click();
+	    
+	    
+	    //Validando cadastro no resultado final
+	    MobileElement nome = driver.findElement(By.xpath("//android.widget.TextView[@text='Nome: Orlando']"));
+	    Assert.assertEquals("Nome: Orlando", nome.getText());
+	    
+	    MobileElement combo = driver.findElement(By.xpath("//android.widget.TextView[starts-with(@text, 'Console:')]"));
+	    Assert.assertEquals("Console: xone", combo.getText());
+	    
+	    MobileElement switc = driver.findElement(By.xpath("//android.widget.TextView[starts-with(@text, 'Switch:')]"));
+	    Assert.assertTrue(switc.getText().endsWith("Off"));
+	    
+	    MobileElement check = driver.findElement(By.xpath("//android.widget.TextView[starts-with(@text, 'Checkbox:')]"));
+	    Assert.assertTrue(check.getText().endsWith("Marcado"));
 	    
 	    driver.quit();
 	}
