@@ -51,6 +51,10 @@ C:\Users\Orlando>uiautomatorviewer
 
 Com esse comando simples, irá abrir o inspetor para localizar os Locators
 #################################################
+Extra: Link com vários exemplos de busca por locators
+https://www.red-gate.com/simple-talk/development/dotnet-development/xpath-css-dom-and-selenium-the-rosetta-stone/
+
+#################################################
 ### Proprietário ###
 
 * Orlando de Oliveira
