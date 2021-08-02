@@ -10,6 +10,7 @@
 - Comando: emulator -list-avds
 
 - Exemplo: C:\Users\Orlando>emulator -list-avds
+
 Nexus_5_API_30
 Pixel_2_API_24
 ##############################################
@@ -30,6 +31,7 @@ Obs: Entre na pasta tools
 - Comando: emulator @Pixel_2_API_24
 
 Com isso irá abrir o emulador.
+
 ################################################
 * Listar dispositivos conectados/ligados.
 
@@ -37,12 +39,16 @@ Com isso irá abrir o emulador.
 
 Exemplo:
 C:\Users\Orlando>adb devices
-* daemon started successfully
+
+daemon started successfully
+
 List of devices attached
+
 emulator-5554   device
 emulator-5556   device
 #################################################
-* Abrir o inspetor UIAUTOMATORVIEWER para pegar os locators
+
+*Abrir o inspetor UIAUTOMATORVIEWER para pegar os locators
 
 - comando: uiautomatorviewer
 
@@ -51,7 +57,7 @@ C:\Users\Orlando>uiautomatorviewer
 
 Com esse comando simples, irá abrir o inspetor para localizar os Locators
 #################################################
-Extra: Link com vários exemplos de busca por locators
+### Extra: Link com vários exemplos de busca por locators ###
 https://www.red-gate.com/simple-talk/development/dotnet-development/xpath-css-dom-and-selenium-the-rosetta-stone/
 
 #################################################
