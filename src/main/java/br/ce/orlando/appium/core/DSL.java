@@ -19,11 +19,12 @@ public class DSL {
 	}
 	
 	public void clicarPorTexto(String texto) {
-		clicar(By.xpath("//*[@text='" +texto+ "']"));
+		clicar(By.xpath("//*[@text='"+texto+"']"));
 	}
 	
-	public void selecionarCombo(By by, String valor) {
+	public void selecionarCombo(By by, String valor) throws InterruptedException {
 		getDriver().findElement(by).click();
+		Thread.sleep(2000);
 		clicarPorTexto(valor);
 	}
 	

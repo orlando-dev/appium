@@ -8,21 +8,22 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import br.ce.orlando.appium.core.DSL;
 import br.ce.orlando.appium.core.DriverFactory;
-import io.appium.java_client.MobileBy;
+import br.ce.orlando.appium.page.FormularioPage;
+import br.ce.orlando.appium.page.MenuPage;
 
 public class FormularioTest {
-	
-	private DSL dsl = new DSL();
+		
+	private MenuPage menu = new MenuPage();
+	private FormularioPage page = new FormularioPage();
 	
 	@Before
 	public void inicializarAppium() throws MalformedURLException, InterruptedException {
 		
 		Thread.sleep(1000);
-		dsl.clicarPorTexto("Formulário");
+		menu.acessarFormulario();
+		Thread.sleep(1000);
 	}
 	
 	@After
@@ -32,65 +33,56 @@ public class FormularioTest {
 	
 	@Test
 	public void devePreencherCampoTexto() throws MalformedURLException {
-		//escrever nome
-	    dsl.escrever(MobileBy.AccessibilityId("nome"), "Orlando");
+		page.escreverNome("Orlando");
 		
-	    //checar nome escrito
-	    assertEquals("Orlando", dsl.obterTexto(MobileBy.AccessibilityId("nome")));
+	    assertEquals("Orlando", page.obterNome());
 
 	}
 
 	
 	@Test
-	public void deveInteragirCombo() throws MalformedURLException {
+	public void deveInteragirCombo() throws MalformedURLException, InterruptedException {
 		
-	    //clicar no combo
-		dsl.selecionarCombo(MobileBy.AccessibilityId("console"), "XBox One");
+	    page.selecionarCombo("XBox One");
 	   
 		
-		//verificar opcao selecionada
-	    String text = dsl.obterTexto(By.xpath("//android.widget.Spinner/android.widget.TextView"));
-	    Assert.assertEquals("XBox One", text);
+		Assert.assertEquals("XBox One", page.obterValorCombo());
 	    
 	}
 	
 	@Test
 	public void deveInteragirSwitchCheckBox() throws MalformedURLException {
 		
-	    //Verificar status dos elementos
-		Assert.assertFalse(dsl.isCheckMarcado(By.className("android.widget.CheckBox")));
-	    Assert.assertTrue(dsl.isCheckMarcado(MobileBy.AccessibilityId("switch")));
+	    Assert.assertFalse(page.isCheckMarcado());
+	    Assert.assertTrue(page.isSwitchMarcado());
 	    
-	    //clicar nos elementos
-	    dsl.clicar(By.className("android.widget.CheckBox"));
-	    dsl.clicar(MobileBy.AccessibilityId("switch"));
+	    page.clicarCheck();
+	    page.clicarSwitch();
 	    
-	    //verificar estados alterados
-	    Assert.assertTrue(dsl.isCheckMarcado(By.className("android.widget.CheckBox")));
-	    Assert.assertFalse(dsl.isCheckMarcado(MobileBy.AccessibilityId("switch")));
+	    Assert.assertTrue(page.isCheckMarcado());
+	    Assert.assertFalse(page.isSwitchMarcado());
 	    
 	}
 	
 	@Test
-	public void deveRealizarCadastro() throws MalformedURLException {
+	public void deveRealizarCadastro() throws MalformedURLException, InterruptedException {
 		
-		//Preencher campos 
-		dsl.escrever(MobileBy.AccessibilityId("nome"), "Orlando");
-		dsl.clicar(By.className("android.widget.CheckBox"));
-	    dsl.clicar(MobileBy.AccessibilityId("switch"));
-	    dsl.selecionarCombo(MobileBy.AccessibilityId("console"), "XBox One");
+		page.escreverNome("Orlando");
+		page.clicarCheck();
+		page.clicarSwitch();
+		Thread.sleep(5000);
+		page.selecionarCombo("XBox One");
 	   
-	    //Salvar
-	    dsl.clicarPorTexto("SALVAR");
-	    	    
-	    //Validando cadastro no resultado final
-	    Assert.assertEquals("Nome: Orlando", dsl.obterTexto(By.xpath("//android.widget.TextView[@text='Nome: Orlando']")));
+	    page.salvar();
 	    
-	    Assert.assertEquals("Console: xone", dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Console:')]")));
+	    Thread.sleep(5000);
+	    Assert.assertEquals("Nome: Orlando", page.obterNomeCadastrado());
 	    
-	    Assert.assertTrue(dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Switch:')]")).endsWith("Off"));
+	    Assert.assertEquals("Console: xone", page.obterConsoleCadastrado());
 	    
-	    Assert.assertTrue(dsl.obterTexto(By.xpath("//android.widget.TextView[starts-with(@text, 'Checkbox:')]")).endsWith("Marcado"));
+	    Assert.assertTrue(page.obterCheckCadastrado().endsWith("Off"));
+	    
+	    Assert.assertTrue(page.obterSwitchCadastrado().endsWith("Marcado"));
 	    
 	}
 }
