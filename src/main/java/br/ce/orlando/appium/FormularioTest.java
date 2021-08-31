@@ -4,16 +4,15 @@ import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ce.orlando.appium.core.DriverFactory;
+import br.ce.orlando.appium.core.BaseTest;
 import br.ce.orlando.appium.page.FormularioPage;
 import br.ce.orlando.appium.page.MenuPage;
 
-public class FormularioTest {
+public class FormularioTest extends BaseTest {
 		
 	private MenuPage menu = new MenuPage();
 	private FormularioPage page = new FormularioPage();
@@ -24,11 +23,6 @@ public class FormularioTest {
 		Thread.sleep(1000);
 		menu.acessarFormulario();
 		Thread.sleep(1000);
-	}
-	
-	@After
-	public void tearDown() {
-		DriverFactory.killDriver();
 	}
 	
 	@Test
