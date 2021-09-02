@@ -9,12 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.ce.orlando.appium.core.BaseTest;
-import br.ce.orlando.appium.core.DriverFactory;
 import br.ce.orlando.appium.page.FormularioPage;
 import br.ce.orlando.appium.page.MenuPage;
 
@@ -76,8 +74,6 @@ public class FormularioTest extends BaseTest {
 	   
 	    page.salvar();
 	    
-	    
-//	    WebDriverWait wait1 = new WebDriverWait(DriverFactory.getDriver(), 10);
 	    Assert.assertEquals("Nome: Orlando", page.obterNomeCadastrado());
 	    
 	    Assert.assertEquals("Console: xone", page.obterConsoleCadastrado());
