@@ -1,5 +1,6 @@
 package br.ce.orlando.appium.test;
 
+import static br.ce.orlando.appium.core.DriverFactory.getDriver;
 import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
@@ -7,8 +8,13 @@ import java.net.MalformedURLException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.ce.orlando.appium.core.BaseTest;
+import br.ce.orlando.appium.core.DriverFactory;
 import br.ce.orlando.appium.page.FormularioPage;
 import br.ce.orlando.appium.page.MenuPage;
 
@@ -64,12 +70,14 @@ public class FormularioTest extends BaseTest {
 		page.escreverNome("Orlando");
 		page.clicarCheck();
 		page.clicarSwitch();
-		Thread.sleep(5000);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='XBox One]'")));
 		page.selecionarCombo("XBox One");
 	   
 	    page.salvar();
 	    
-	    Thread.sleep(5000);
+	    
+//	    WebDriverWait wait1 = new WebDriverWait(DriverFactory.getDriver(), 10);
 	    Assert.assertEquals("Nome: Orlando", page.obterNomeCadastrado());
 	    
 	    Assert.assertEquals("Console: xone", page.obterConsoleCadastrado());
