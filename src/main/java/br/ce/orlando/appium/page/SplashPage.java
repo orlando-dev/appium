@@ -12,13 +12,13 @@ import br.ce.orlando.appium.core.BasePage;
 
 public class SplashPage extends BasePage {
 	
-	public boolean isTelaSplashVisivel() {
+	public boolean isTelaSplashVisivel(){
 		return existeElementoPorTexto("Splash!");
 	}
 	
-	public void aguardarSplashSumir() {
+	public void aguardarSplashSumir(){
 		getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(getDriver(), 0);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='Splash!]'")));
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='Splash!']")));
 	}
 }

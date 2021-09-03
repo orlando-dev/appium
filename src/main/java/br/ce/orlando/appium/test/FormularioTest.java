@@ -83,4 +83,14 @@ public class FormularioTest extends BaseTest {
 	    Assert.assertTrue(page.obterSwitchCadastrado().endsWith("Marcado"));
 	    
 	}
+	
+	@Test
+	public void deveAlterarData() {
+		page.clicarPorTexto("01/01/2000");
+		page.clicarPorTexto("20");
+		page.clicarPorTexto("OK");
+		
+		System.out.println(page.existeElementoPorTexto("20/2/2000"));
+		Assert.assertTrue(page.existeElementoPorTexto("20/2/2000"));
+	}
 }

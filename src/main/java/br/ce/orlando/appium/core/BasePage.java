@@ -5,6 +5,8 @@ import static br.ce.orlando.appium.core.DriverFactory.getDriver;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 
@@ -38,6 +40,8 @@ public class BasePage {
 	}
 	
 	public boolean existeElementoPorTexto(String texto) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='"+texto+"']")));
 		List<MobileElement> elementos = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
 		return elementos.size() > 0;
 	}
