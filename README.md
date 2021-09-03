@@ -58,7 +58,7 @@ C:\Users\Orlando>uiautomatorviewer
 Com esse comando simples, irá abrir o inspetor para localizar os Locators
 ### #################################################
 * Dependencias do pom.xml
-
+	- 
     <dependencies>
 		<dependency>
 			<groupId>io.appium</groupId>
