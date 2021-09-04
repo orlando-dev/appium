@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import br.ce.orlando.appium.core.BaseTest;
 import br.ce.orlando.appium.page.FormularioPage;
 import br.ce.orlando.appium.page.MenuPage;
+import io.appium.java_client.MobileBy;
 
 public class FormularioTest extends BaseTest {
 		
@@ -90,7 +91,15 @@ public class FormularioTest extends BaseTest {
 		page.clicarPorTexto("20");
 		page.clicarPorTexto("OK");
 		
-		System.out.println(page.existeElementoPorTexto("20/2/2000"));
-		Assert.assertTrue(page.existeElementoPorTexto("20/2/2000"));
+		page.existeElementoPorTexto("20/2/2000");
+	}
+	
+	@Test
+	public void deveAlterarHora() {
+		page.clicarPorTexto("06:00");
+		page.clicar(MobileBy.AccessibilityId("10"));
+		page.clicar(MobileBy.AccessibilityId("40"));
+		page.clicarPorTexto("OK");
+		page.existeElementoPorTexto("10:40");
 	}
 }

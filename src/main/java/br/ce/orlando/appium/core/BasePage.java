@@ -31,7 +31,8 @@ public class BasePage {
 	
 	public void selecionarCombo(By by, String valor) throws InterruptedException {
 		getDriver().findElement(by).click();
-		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='"+valor+"']")));
 		clicarPorTexto(valor);
 	}
 	
