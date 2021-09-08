@@ -100,6 +100,6 @@ public class FormularioTest extends BaseTest {
 		page.clicar(MobileBy.AccessibilityId("10"));
 		page.clicar(MobileBy.AccessibilityId("40"));
 		page.clicarPorTexto("OK");
-		page.existeElementoPorTexto("10:40");
+		Assert.assertTrue(page.existeElementoPorTexto("10:40"));
 	}
 }

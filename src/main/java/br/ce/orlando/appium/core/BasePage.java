@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class BasePage {
 	
@@ -45,6 +47,18 @@ public class BasePage {
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@text='"+texto+"']")));
 		List<MobileElement> elementos = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
 		return elementos.size() > 0;
+	}
+	
+	public void tap(int x, int y) {
+		new TouchAction(getDriver()).press(PointOption.point(x, y)).perform();
+	}
+	
+	public void esperar(int tempo) {
+		try {
+			Thread.sleep(tempo);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
