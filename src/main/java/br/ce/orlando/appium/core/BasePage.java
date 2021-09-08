@@ -50,8 +50,12 @@ public class BasePage {
 	}
 	
 	public void tap(int x, int y) {
-		new TouchAction(getDriver()).press(PointOption.point(x, y)).perform();
-	}
+
+		TouchAction touchAction = new TouchAction(DriverFactory.getDriver());
+
+		touchAction.tap(PointOption.point(x, y)).perform();
+
+		}
 	
 	public void esperar(int tempo) {
 		try {

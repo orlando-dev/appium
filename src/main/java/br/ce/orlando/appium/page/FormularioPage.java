@@ -3,7 +3,9 @@ package br.ce.orlando.appium.page;
 import org.openqa.selenium.By;
 
 import br.ce.orlando.appium.core.BasePage;
+import br.ce.orlando.appium.core.DriverFactory;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 
 public class FormularioPage extends BasePage{
 	
@@ -38,6 +40,34 @@ public class FormularioPage extends BasePage{
 	public boolean isSwitchMarcado() {
 		return isCheckMarcado(MobileBy.AccessibilityId("switch"));
 	}
+	
+//	public void clicarSeekbar(double posicao) {
+//		MobileElement seek = DriverFactory.getDriver().findElement(MobileBy.AccessibilityId("slid"));
+//		int y = seek.getLocation().y + (seek.getSize().height / 2);
+//		System.out.println("PosicaoSeek Y " + y);
+//		
+//		int x = (int) (seek.getLocation().x + (seek.getSize().width * posicao));
+//		System.out.println("PosicaoSeek X " + x);
+//		
+//		tap(x,y);
+//	}
+	
+	public void clicarSeekBar(double posicao) {
+
+		MobileElement seek = DriverFactory.getDriver().findElement(MobileBy.AccessibilityId("slid"));
+
+		int delta = 37;
+
+		int xInicial = seek.getLocation().x + delta;
+		int x = (int) (xInicial + (seek.getSize().width-2*delta)*posicao);
+		System.out.println("PosicaoSeek X " + x);
+
+		int y = (seek.getLocation().y) + (seek.getSize().height/2);
+		System.out.println("PosicaoSeek Y " + y);
+		
+		tap(x, y);
+
+		}
 	
 	public void salvar() {
 		clicarPorTexto("SALVAR");
