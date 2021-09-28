@@ -2,14 +2,17 @@ package br.ce.orlando.appium.core;
 
 import static br.ce.orlando.appium.core.DriverFactory.getDriver;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
 public class BasePage {
@@ -49,6 +52,14 @@ public class BasePage {
 		return elementos.size() > 0;
 	}
 	
+	public String obterTituloAlerta() {
+		return obterTexto(By.id("android:id/alertTitle"));
+	}
+	
+	public String obterMensagemAlerta() {
+		return obterTexto(By.id("android:id/message"));
+	}
+	
 	public void tap(int x, int y) {
 
 		TouchAction touchAction = new TouchAction(DriverFactory.getDriver());
@@ -63,6 +74,27 @@ public class BasePage {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void scroll(double inicio, double fim) {
+		Dimension size = getDriver().manage().window().getSize();
+		
+		int x = size.width / 2;
+		
+		int start_y = (int) (size.height * inicio);
+		int end_y = (int) (size.height * fim);
+		
+		TouchAction dragNDrop = new TouchAction(getDriver())
+				.press(PointOption.point(x,start_y))
+				.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+				.moveTo(PointOption.point(x, end_y))
+				.release();
+				dragNDrop.perform();
+		
+//		new TouchAction(getDriver()).press(x, start_y).waitAction(Duration.ofMillis(500))
+//		.moveTo(x, end_y)
+//		.release()
+//		.perform();
 	}
 	
 }
