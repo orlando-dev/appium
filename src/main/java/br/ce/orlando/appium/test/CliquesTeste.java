@@ -2,6 +2,7 @@ package br.ce.orlando.appium.test;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.ce.orlando.appium.core.BaseTest;
@@ -10,10 +11,10 @@ import br.ce.orlando.appium.page.MenuPage;
 
 public class CliquesTeste extends BaseTest {
 	
-	private MenuPage menu = new MenuPage();
+	private static MenuPage menu = new MenuPage();
 	private CliquesPage page = new CliquesPage();
 	
-	@Before
+	@BeforeClass
 	public void setup() {
 		menu.acessarCliques();
 	}
